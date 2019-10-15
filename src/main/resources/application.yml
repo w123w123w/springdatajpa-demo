@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.12.38.177:6969/springdatajpa-demo?characterEncoding=utf8
+    username: root
+    password: 123456
+  ###以下配置：jpa配置
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    ###以下配置：Spring Boot整合JPA后Hibernate的Session就交付给Spring去管理。每次数据库操作后，会关闭Session，当我们想要用懒加载方式去获得数据的时候，原来的Session已经关闭，不能获取数据，所以会抛出这样的异常。
+    open-in-view: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
